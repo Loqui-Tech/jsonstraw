@@ -71,7 +71,7 @@ jobs:
       - name: Build
         run: python -m build
         env:
-          PANCHAM_VERSION: ${{ steps.get_release.outputs.tag_name }}
+          STRAW_VERSION: ${{ steps.get_release.outputs.tag_name }}
       - uses: actions/upload-artifact@v4
         name: Publish
         with:
