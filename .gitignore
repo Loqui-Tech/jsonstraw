@@ -1,2 +1,4 @@
 test/large*
 .venv
+dist
+jsonstraw.egg-info
