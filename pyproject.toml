@@ -1,0 +1,25 @@
+[project]
+name = "jsonstraw"
+dynamic = ["version"]
+dependencies = []
+requires-python = ">=3.11"
+
+[project.urls]
+Homepage = "https://github.com/Loqui-Tech/jsonstraw"
+
+[tool.setuptools.packages]
+find = {}
+
+[tool.pytest.ini_options]
+pythonpath = [
+    './jsonstraw'
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.coverage.run]
+omit = [
+    "tests"
+]
