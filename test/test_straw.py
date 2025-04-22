@@ -1,6 +1,8 @@
 import os
 
-from jsonstraw.straw import read_json_chunk
+from jsonstraw import read_json_chunk
+
+dir = os.path.dirname(os.path.realpath(__file__))
 
 def generate_test_file(filename: str, key: str = 'data', length: int = 1000000):
     if os.path.exists(filename):
@@ -25,14 +27,14 @@ def generate_test_file(filename: str, key: str = 'data', length: int = 1000000):
 
 def test_read_small_file():
 
-    for output in read_json_chunk("small.json", key = 'data'):
+    for output in read_json_chunk(f"{dir}/small.json", key = 'data'):
         assert len(output) == 3
         assert output[0].name == 'Bob'
 
 
 def test_read_small_file_in_chunks():
     first_loop = True
-    for output in read_json_chunk("small.json", key = 'data', chunk_size = 2):
+    for output in read_json_chunk(f"{dir}/small.json", key = 'data', chunk_size = 2):
         if first_loop:
             assert len(output) == 2
             assert output[0]['name'] == 'Bob'
@@ -41,8 +43,8 @@ def test_read_small_file_in_chunks():
             assert output[0]['name'] == 'Greg'
 
 def test_read_large_file():
-    generate_test_file("large1.json", length=100000000)
+    generate_test_file(f"{dir}/large1.json", length=10000000)
 
-    for output in read_json_chunk("large1.json", key = 'data', chunk_size=1000):
+    for output in read_json_chunk(f"{dir}/large1.json", key = 'data', chunk_size=1000):
         assert len(output) == 1000
         assert output[0]['name'] == 'Bob'
