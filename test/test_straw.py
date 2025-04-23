@@ -35,13 +35,13 @@ def test_read_small_file():
 
     assert has_run
 
-
 def test_read_small_file_in_chunks():
     first_loop = True
     for output in read_json_chunk(f"{dir}/small.json", key = 'data', chunk_size = 2):
         if first_loop:
             assert len(output) == 2
             assert output[0]['name'] == 'Bob'
+            first_loop = False
         else:
             assert len(output) == 1
             assert output[0]['name'] == 'Greg'
