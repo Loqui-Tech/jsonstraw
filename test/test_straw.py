@@ -27,9 +27,13 @@ def generate_test_file(filename: str, key: str = 'data', length: int = 1000000):
 
 def test_read_small_file():
 
+    has_run = False
     for output in read_json_chunk(f"{dir}/small.json", key = 'data'):
         assert len(output) == 3
-        assert output[0].name == 'Bob'
+        assert output[0]['name'] == 'Bob'
+        has_run = True
+
+    assert has_run
 
 
 def test_read_small_file_in_chunks():

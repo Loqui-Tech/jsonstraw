@@ -62,4 +62,5 @@ def read_json_chunk(file: str, chunk_size: int = 1000, key: Optional[str] = None
 
             line = f.readline()
 
-
+        if len(output) > 0:
+            yield output
