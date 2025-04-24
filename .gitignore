@@ -2,3 +2,4 @@ test/large*
 .venv
 dist
 jsonstraw.egg-info
+__pycache__

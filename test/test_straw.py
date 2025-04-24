@@ -35,6 +35,26 @@ def test_read_small_file():
 
     assert has_run
 
+def test_read_small_file2():
+
+    has_run = False
+    for output in read_json_chunk(f"{dir}/small2.json", key = 'data'):
+        assert len(output) == 3
+        assert output[0]['name'] == 'Bob'
+        has_run = True
+
+    assert has_run
+
+def test_read_small_file3():
+
+    has_run = False
+    for output in read_json_chunk(f"{dir}/small3.json", key = 'data'):
+        assert len(output) == 3
+        assert output[0]['name'] == 'Bob'
+        has_run = True
+
+    assert has_run
+
 def test_read_small_file_in_chunks():
     first_loop = True
     for output in read_json_chunk(f"{dir}/small.json", key = 'data', chunk_size = 2):
@@ -45,6 +65,24 @@ def test_read_small_file_in_chunks():
         else:
             assert len(output) == 1
             assert output[0]['name'] == 'Greg'
+
+def test_read_small_file3_in_chunks():
+    first_loop = True
+    tested_first = False
+    tested_second = False
+    for output in read_json_chunk(f"{dir}/small3.json", key = 'data', chunk_size = 2):
+        if first_loop:
+            assert len(output) == 2
+            assert output[0]['name'] == 'Bob'
+            first_loop = False
+            tested_first = True
+        else:
+            assert len(output) == 1
+            assert output[0]['name'] == 'Greg'
+            tested_second = True
+
+    assert tested_first
+    assert tested_second
 
 def test_read_large_file():
     generate_test_file(f"{dir}/large1.json", length=10000000)

@@ -1,6 +1,12 @@
 from typing import Optional
 import json
 
+def __is_a_valid_start(line: str, key: Optional[str]) -> bool:
+    """
+    Test if the current line is a valid starting point for the json object
+    """
+    return key is not None and key in line and ':' in line
+
 def read_json_chunk(file: str, chunk_size: int = 1000, key: Optional[str] = None):
     """
     Reads a JSON file incrementally in chunks, parsing individual JSON objects
@@ -57,7 +63,7 @@ def read_json_chunk(file: str, chunk_size: int = 1000, key: Optional[str] = None
                 if key is None and contents == '[':
                     has_started_list = True
 
-                elif key is not None and contents.startswith(f'"{key}":'):
+                elif __is_a_valid_start(contents, key):
                     has_started_list = True
 
             line = f.readline()
