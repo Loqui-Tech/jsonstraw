@@ -1,0 +1,4 @@
+pytest
+pytest-cov
+pytest-xdist
+orjson >= 3.10,<4

@@ -3,3 +3,4 @@ test/large*
 dist
 jsonstraw.egg-info
 __pycache__
+requirements.txt
