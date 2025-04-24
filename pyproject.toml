@@ -1,7 +1,9 @@
 [project]
 name = "jsonstraw"
 dynamic = ["version"]
-dependencies = []
+dependencies = [
+    'orjson = "^3.10"'
+]
 requires-python = ">=3.11"
 readme = 'readme.md'
 authors = [

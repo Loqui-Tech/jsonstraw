@@ -1,5 +1,5 @@
 from typing import Optional
-import json
+import orjson
 
 def __is_a_valid_start(line: str, key: Optional[str]) -> bool:
     """
@@ -49,7 +49,7 @@ def read_json_chunk(file: str, chunk_size: int = 1000, key: Optional[str] = None
                     if contents.startswith('}'):
                         string_buffer += '}'
                         has_started_object = False
-                        output.append(json.loads(string_buffer))
+                        output.append(orjson.loads(string_buffer))
                         string_buffer = ''
 
                         if len(output) >= chunk_size:
